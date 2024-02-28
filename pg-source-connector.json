@@ -1,0 +1,21 @@
+{
+    "name": "pg-source-connector",
+    "config":{
+        "connector.class": "io.debezium.connector.postgresql.PostgresConnector",
+        "tasks.max": "1",
+        "database.hostname": "pg_source",
+        "database.port": 5432,
+        "database.user": "debezium_replicator",
+        "database.password": "debezium_replicator",
+        "database.dbname" : "oltp",
+        "database.server.name": "oltp_sink",
+        "topic.prefix": "oltp_sink",
+        "plugin.name": "pgoutput",
+        "table.include.list": "public.fact_cost",
+        "publication.name": "dbz_publication",
+        "poll.interval.ms": "1000",
+        "heartbeat.action.query": "INSERT INTO debezium_info.heartbeat (date_load) VALUES (NOW());",
+        "heartbeat.writeback.enabled": "true",
+        "heartbeat.interval.ms": 5
+    }
+}

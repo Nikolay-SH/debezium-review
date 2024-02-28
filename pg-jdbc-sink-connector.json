@@ -1,0 +1,19 @@
+{
+    "name": "pg-jdbc-sink-connector",
+    "config": {
+        "connector.class": "io.confluent.connect.jdbc.JdbcSinkConnector",
+        "tasks.max": "1",
+        "topics": "oltp_sink.public.fact_cost",
+        "connection.url": "jdbc:postgresql://pg_sink:5432/oltp_sink?user=postgresuser&password=postgrespw",
+        "transforms": "unwrap",
+        "transforms.unwrap.type": "io.debezium.transforms.ExtractNewRecordState",
+        "transforms.unwrap.drop.tombstones": "false",
+        "auto.create": "true",
+        "insert.mode": "upsert",
+        "delete.enabled": "false",
+        "pk.fields": "id_fact_cost",
+        "pk.mode": "record_key",
+        "errors.log.enable": "true",
+        "errors.log.include.messages": "true"
+    }
+}
